@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/bar_card" />
+
+    <TextView
+        android:id="@+id/tv_card_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal_16"
+        android:textSize="@dimen/font_large_20"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        tools:text="Имя Фамилия"/>
+
+    <TextView
+        android:id="@+id/tv_card_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_small_8"
+        android:paddingStart="@dimen/spacing_normal_16"
+        android:textSize="@dimen/font_small_12"
+        android:textColor="@color/colorClickable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_name"
+        tools:text="+1 (222) 333-5566" />
+
+    <TextView
+        android:id="@+id/tv_card_temperament"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_normal_16"
+        android:paddingBottom="@dimen/spacing_small_8"
+        android:textColor="@color/colorGray"
+        android:textSize="@dimen/font_small_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_phone"
+        tools:text="Choleric" />
+
+    <TextView
+        android:id="@+id/tv_card_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_normal_16"
+        android:paddingBottom="@dimen/spacing_small_8"
+        android:textColor="@color/colorGray"
+        android:textSize="@dimen/font_small_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_temperament"
+        tools:text="13.11.2001 - 29.07.2018" />
+
+    <TextView
+        android:id="@+id/tv_card_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_normal_16"
+        android:paddingBottom="@dimen/spacing_small_8"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/font_small_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_dates"
+        tools:text="@string/lorem_ipsum" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
