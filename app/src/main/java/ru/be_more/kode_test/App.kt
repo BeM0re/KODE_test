@@ -4,6 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import ru.be_more.kode_test.di.interactorModule
 import ru.be_more.kode_test.di.networkModule
 import ru.be_more.kode_test.di.repositoryModule
 
@@ -21,8 +22,7 @@ open class App : Application() {
 //                presenterModule,
                 repositoryModule,
 //                storageModule,
-//                databaseModule,
-//                interactorModule,
+                interactorModule,
                 networkModule)
             )
         }
