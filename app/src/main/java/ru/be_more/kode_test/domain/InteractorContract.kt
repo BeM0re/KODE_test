@@ -9,5 +9,6 @@ interface InteractorContract {
     interface RecipeInteractor {
         fun getRecipe(id: String): Single<Recipe>
         fun getRecipes(): Single<List<RecipeShort>>
+        fun release()
     }
 }

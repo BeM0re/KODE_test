@@ -16,4 +16,8 @@ class RecipeInteractorImpl(
     override fun getRecipes(): Single<List<RecipeShort>> =
         repo.getRecipes()
 
+    override fun release() =
+        repo.release()
+
+
 }

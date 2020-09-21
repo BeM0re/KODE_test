@@ -6,6 +6,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import ru.be_more.kode_test.di.interactorModule
 import ru.be_more.kode_test.di.networkModule
+import ru.be_more.kode_test.di.presentationModule
 import ru.be_more.kode_test.di.repositoryModule
 
 
@@ -19,7 +20,7 @@ open class App : Application() {
             androidLogger()
             modules(listOf(
 //                appModule,
-//                presenterModule,
+                presentationModule,
                 repositoryModule,
 //                storageModule,
                 interactorModule,
