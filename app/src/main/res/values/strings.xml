@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Kontur_test</string>
-    <string name="search_hint">Поиск</string>
+    <string name="app_name">KODE</string>
+    <string name="search_hint">Search</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ex</string>
     <string name="description_title">Description</string>
     <string name="instruction_title">Instruction</string>
