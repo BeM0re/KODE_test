@@ -1,6 +1,6 @@
-package ru.be_more.kode_test.data.remote.models
+package ru.be_more.kode_test.domain.model
 
-data class RemoteRecipe(
+data class Recipe(
     val uuid: String,
     val name: String,
     val images: List<String>,
@@ -8,5 +8,5 @@ data class RemoteRecipe(
     val description: String,
     val instructions: String,
     val difficulty: Int,
-    val similar: List<RemoteRecipeSimilar>
+    val similar: List<RecipeSimilar>
 )
