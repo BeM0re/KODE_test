@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
+    app:startDestination="@id/detailsFragment">
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="ru.be_more.kode_test.presentation.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_fullscreenFragment"
+            app:destination="@id/fullscreenFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_self"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeListFragment"
+        android:name="ru.be_more.kode_test.presentation.recipeList.RecipeListFragment"
+        android:label="KODE" >
+        <action
+            android:id="@+id/action_recipeListFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullscreenFragment"
+        android:name="ru.be_more.kode_test.presentation.fullscreen.FullscreenFragment"
+        android:label="FullscreenFragment" />
+    <argument
+        android:name="title"
+        app:argType="string" />
+</navigation>
