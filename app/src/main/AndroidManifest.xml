@@ -27,7 +27,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="ru.be_more.orange_forum.fileprovider"
+            android:authorities="ru.be_more.kode_test.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

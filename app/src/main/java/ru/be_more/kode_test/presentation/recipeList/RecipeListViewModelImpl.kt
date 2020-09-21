@@ -13,7 +13,7 @@ class RecipeListViewModelImpl (
     override val dataset = MutableLiveData<List<RecipeShort>>()
 
     override fun loadData() {
-        
+
     }
 
     override fun onDestroy() {
