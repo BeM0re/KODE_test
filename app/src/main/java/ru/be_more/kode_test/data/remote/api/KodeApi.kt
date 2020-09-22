@@ -4,7 +4,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import ru.be_more.kode_test.data.remote.model.RemoteRecipe
-import ru.be_more.kode_test.data.remote.model.RemoteRecipeShort
+import ru.be_more.kode_test.data.remote.model.RemoteRecipes
 
 interface KodeApi {
 
@@ -12,6 +12,6 @@ interface KodeApi {
     fun getRecipe(@Path("uuid") uuid: String): Single<RemoteRecipe>
 
     @GET("recipes")
-    fun getRecipeList(): Single<List<RemoteRecipeShort>>
+    fun getRecipeList(): Single<RemoteRecipes>
 
 }

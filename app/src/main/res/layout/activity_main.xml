@@ -21,8 +21,10 @@
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <fragment
             android:id="@+id/nav_host_fragment"
@@ -30,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="false"
-            app:navGraph="@navigation/main_graph"/>
+            app:navGraph="@navigation/main_graph" />
 
     </FrameLayout>
 

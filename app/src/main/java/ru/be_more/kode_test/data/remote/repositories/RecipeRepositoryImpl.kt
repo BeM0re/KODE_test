@@ -19,8 +19,11 @@ class RecipeRepositoryImpl(
 
     override fun getRecipes(): Single<List<RecipeShort>> =
         api.getRecipeList()
-            .map { list ->
-                list.map { it.toModel() }
+            .map {
+                it.recipes
+            }
+            .map { recipes ->
+                recipes.map { it.toModel() }
             }
             .processSingle()
 

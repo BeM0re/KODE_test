@@ -2,7 +2,6 @@ package ru.be_more.kode_test.presentation.recipeList
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.be_more.kode_test.domain.InteractorContract
@@ -25,8 +24,9 @@ class RecipeListViewModelImpl (
                     isLoading.postValue(false)
                     dataset.postValue(it)
                 },
-                { Log.e("M_RecipeListViewModelIm","Get list error = $it")}
+                { Log.e("M_RecipeListViewModelIm","Get list error = $it") }
             )
+
     }
 
     override fun onDestroy() {
