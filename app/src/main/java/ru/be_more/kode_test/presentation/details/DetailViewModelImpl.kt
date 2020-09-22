@@ -12,7 +12,7 @@ class DetailViewModelImpl (
 
     override val recipeData = MutableLiveData<Recipe>()
 
-    override fun loadData() {
+    override fun initViewModel() {
         TODO("Not yet implemented")
     }
 

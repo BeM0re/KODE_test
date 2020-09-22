@@ -1,22 +1,23 @@
 package ru.be_more.kode_test.presentation
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import ru.be_more.kode_test.domain.model.Recipe
 import ru.be_more.kode_test.domain.model.RecipeShort
 
 interface ViewModelContract {
 
     interface BaseViewModel{
-        fun loadData()
+        fun initViewModel()
         fun onDestroy()
         fun saveState()
     }
 
     interface RecipeListViewModel: BaseViewModel {
-        val dataset: MutableLiveData<List<RecipeShort>>
+        val isLoading: LiveData<Boolean>
+        val dataset: LiveData<List<RecipeShort>>
     }
 
     interface DetailViewModel: BaseViewModel {
-        val recipeData: MutableLiveData<Recipe>
+        val recipeData: LiveData<Recipe>
     }
 }

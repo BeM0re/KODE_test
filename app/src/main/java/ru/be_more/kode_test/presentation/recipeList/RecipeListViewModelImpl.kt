@@ -1,5 +1,8 @@
 package ru.be_more.kode_test.presentation.recipeList
 
+import android.annotation.SuppressLint
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.be_more.kode_test.domain.InteractorContract
@@ -11,9 +14,19 @@ class RecipeListViewModelImpl (
 ): ViewModel(), ViewModelContract.RecipeListViewModel{
 
     override val dataset = MutableLiveData<List<RecipeShort>>()
+    override val isLoading = MutableLiveData<Boolean>()
 
-    override fun loadData() {
-
+    @SuppressLint("CheckResult")
+    override fun initViewModel() {
+        isLoading.postValue(true)
+        interactor.getRecipes()
+            .subscribe(
+                {
+                    isLoading.postValue(false)
+                    dataset.postValue(it)
+                },
+                { Log.e("M_RecipeListViewModelIm","Get list error = $it")}
+            )
     }
 
     override fun onDestroy() {
