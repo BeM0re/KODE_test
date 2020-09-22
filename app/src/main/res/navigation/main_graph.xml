@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="ru.be_more.kode_test.presentation.details.DetailFragment"
-        android:label="DetailsFragment" >
+        android:label="{title}" >
         <argument
             android:name="title"
             app:argType="string" />
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/fullscreenFragment"
         android:name="ru.be_more.kode_test.presentation.fullscreen.FullscreenFragment"
-        android:label="FullscreenFragment" />
+        android:label="{title}" />
     <argument
         android:name="title"
         app:argType="string" />

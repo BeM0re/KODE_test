@@ -57,7 +57,10 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
     }
 
     private fun showLoading(isLoading: Boolean) {
-
+        if (isLoading)
+            pb_recipe_list_loading.visibility = View.VISIBLE
+        else
+            pb_recipe_list_loading.visibility = View.GONE
     }
 
     private fun initNav(view: View) {
