@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "ru.be_more.kontur_test"
+        applicationId "ru.be_more.kode_test"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

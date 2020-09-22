@@ -1,7 +1,7 @@
 package ru.be_more.kode_test.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -22,10 +22,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNav() {
-//        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         NavigationUI.setupActionBarWithNavController(this, navController)
+
     }
 
 }

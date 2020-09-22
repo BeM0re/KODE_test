@@ -1,10 +1,14 @@
 package ru.be_more.kode_test.presentation.recipeList
 
+import android.app.SearchManager
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -23,6 +27,7 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
     private val viewModel: ViewModelContract.RecipeListViewModel by inject()
     private var recyclerView : RecyclerView? = null
     private var adapter : RecipeListAdapter? = null
+    private var searchView: SearchView? = null
     private lateinit var navController: NavController
 
     override fun onCreateView(
@@ -33,6 +38,7 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         inflater.inflate(R.layout.fragment_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         super.onViewCreated(view, savedInstanceState)
 
         initRv()
@@ -41,9 +47,31 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         viewModel.initViewModel()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        Log.d("M_RecipeListFragment", "search")
+        inflater.inflate(R.menu.menu, menu)
+
+        val searchItem: MenuItem? = menu.findItem(R.id.action_search)
+        val searchManager = getSystemService(requireContext(), SearchManager::class.java) as SearchManager
+        searchView = searchItem?.actionView as SearchView
+
+
+        searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView?.setOnQueryTextListener(SearchListener(
+            {
+                (activity?.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager)
+                    .hideSoftInputFromWindow(searchView?.windowToken, 0)
+            },
+            { query ->
+                viewModel.search(query ?: "")
+            }
+        ))
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
     private fun subscribe() {
-        viewModel.isLoading.observe(viewLifecycleOwner, {showLoading(it)})
-        viewModel.dataset.observe(viewLifecycleOwner, {showData(it)})
+        viewModel.isLoading.observe(viewLifecycleOwner, { showLoading(it) })
+        viewModel.dataset.observe(viewLifecycleOwner, { showData(it) })
     }
 
     private fun showData(data: List<RecipeShort>?) {

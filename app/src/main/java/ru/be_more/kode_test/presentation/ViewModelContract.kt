@@ -15,6 +15,7 @@ interface ViewModelContract {
     interface RecipeListViewModel: BaseViewModel {
         val isLoading: LiveData<Boolean>
         val dataset: LiveData<List<RecipeShort>>
+        fun search(query: String)
     }
 
     interface DetailViewModel: BaseViewModel {

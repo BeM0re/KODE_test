@@ -5,16 +5,12 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/bar_search" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recipe_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_recipe_short" />
 
     <ProgressBar

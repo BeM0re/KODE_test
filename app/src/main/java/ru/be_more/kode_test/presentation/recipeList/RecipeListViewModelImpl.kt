@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModel
 import ru.be_more.kode_test.domain.InteractorContract
 import ru.be_more.kode_test.domain.model.RecipeShort
 import ru.be_more.kode_test.presentation.ViewModelContract
+import java.util.*
 
 class RecipeListViewModelImpl (
     private val interactor : InteractorContract.RecipeInteractor
 ): ViewModel(), ViewModelContract.RecipeListViewModel{
 
     override val dataset = MutableLiveData<List<RecipeShort>>()
+    private var fullData: List<RecipeShort>? = null
+
     override val isLoading = MutableLiveData<Boolean>()
 
     @SuppressLint("CheckResult")
@@ -22,7 +25,8 @@ class RecipeListViewModelImpl (
             .subscribe(
                 {
                     isLoading.postValue(false)
-                    dataset.postValue(it)
+                    fullData = it
+                    dataset.postValue(fullData)
                 },
                 { Log.e("M_RecipeListViewModelIm","Get list error = $it") }
             )
@@ -37,4 +41,17 @@ class RecipeListViewModelImpl (
         TODO("Not yet implemented")
     }
 
+    override fun search(query: String) {
+        if(query.isEmpty())
+            dataset.postValue(fullData)
+        else{
+            dataset.postValue(
+                fullData?.filter { it.name.contains(query, true) ||
+                        it.description.contains(query, true) ||
+                        it.instructions.contains(query, true) }
+            )
+        }
+
+
+    }
 }
