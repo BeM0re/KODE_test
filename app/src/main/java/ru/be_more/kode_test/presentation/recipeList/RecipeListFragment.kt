@@ -21,6 +21,7 @@ import ru.be_more.kode_test.R
 import ru.be_more.kode_test.domain.model.RecipeShort
 import ru.be_more.kode_test.presentation.ViewModelContract
 import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
+import ru.be_more.kode_test.presentation.recipe.SortDialog
 
 class RecipeListFragment: Fragment(), OnRecipeClickListener {
 
@@ -53,8 +54,6 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         val searchItem: MenuItem? = menu.findItem(R.id.action_search)
         val searchManager = getSystemService(requireContext(), SearchManager::class.java) as SearchManager
         searchView = searchItem?.actionView as SearchView
-
-
         searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView?.setOnQueryTextListener(SearchListener(
             {
@@ -65,6 +64,17 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
                 viewModel.search(query ?: "")
             }
         ))
+
+        val reasonDialog = SortDialog{
+            viewModel.setSort(it)
+        }
+
+        val sortItem: MenuItem? = menu.findItem(R.id.action_sort)
+        sortItem?.setOnMenuItemClickListener {
+            reasonDialog.show(requireActivity().supportFragmentManager, "sort")
+            return@setOnMenuItemClickListener true
+        }
+
         return super.onCreateOptionsMenu(menu, inflater)
     }
 

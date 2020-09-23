@@ -1,8 +1,10 @@
 package ru.be_more.kode_test.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import ru.be_more.kode_test.domain.model.Recipe
 import ru.be_more.kode_test.domain.model.RecipeShort
+import ru.be_more.kode_test.presentation.recipe.SortDialog
 
 interface ViewModelContract {
 
@@ -16,6 +18,7 @@ interface ViewModelContract {
         val isLoading: LiveData<Boolean>
         val dataset: LiveData<List<RecipeShort>>
         fun search(query: String)
+        fun setSort(sortType: SortDialog.SortType)
     }
 
     interface DetailViewModel: BaseViewModel {

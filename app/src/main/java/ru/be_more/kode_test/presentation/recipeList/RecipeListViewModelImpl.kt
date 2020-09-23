@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import ru.be_more.kode_test.domain.InteractorContract
 import ru.be_more.kode_test.domain.model.RecipeShort
 import ru.be_more.kode_test.presentation.ViewModelContract
+import ru.be_more.kode_test.presentation.recipe.SortDialog
 import java.util.*
 
 class RecipeListViewModelImpl (
@@ -53,5 +54,18 @@ class RecipeListViewModelImpl (
         }
 
 
+    }
+
+    override fun setSort(sortType: SortDialog.SortType) {
+        when(sortType){
+            SortDialog.SortType.BY_NAME -> {
+                fullData = fullData?.sortedBy { it.name }
+                dataset.postValue(dataset.value?.sortedBy { it.name })
+            }
+            SortDialog.SortType.BY_DATE -> {
+                fullData = fullData?.sortedBy { it.lastUpdated }
+                dataset.postValue(dataset.value?.sortedBy { it.lastUpdated })
+            }
+        }
     }
 }
