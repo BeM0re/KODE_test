@@ -1,12 +1,15 @@
 package ru.be_more.kode_test.presentation.recipe
 
+import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,12 +40,12 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initRecycler()
-        initNav(view)
         subscribe()
+        initNav(view)
     }
 
     private fun initRecycler() {
-        recyclerView = rv_recipe_list
+        recyclerView = rv_similar_recipes
         recyclerView?.layoutManager = LinearLayoutManager(this.context)
     }
 
@@ -64,10 +67,11 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
         tv_recipe_description.text = recipe.description
         tv_recipe_instruction.text = recipe.instructions
 
-//        if (!recipe.similar.isNullOrEmpty()){
-            adapter = SimilarRecipeAdapter(recipe.similar, this)
-            rv_similar_recipes.adapter = adapter
-//        }
+        adapter = SimilarRecipeAdapter(recipe.similar, this)
+        recyclerView?.adapter = adapter
+        recyclerView?.addItemDecoration(
+            DividerItemDecoration(recyclerView?.context, ClipDrawable.HORIZONTAL)
+        )
 
         recipe.images.forEach {url ->
             Glide.with(iv_recipe_photo)
@@ -80,7 +84,7 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
         val bundle = Bundle()
         bundle.putString("uuid", id)
         bundle.putString("title", name)
-        navController.navigate(R.id.action_recipeListFragment_to_detailsFragment, bundle)
+        navController.navigate(R.id.action_detailsFragment_self, bundle)
     }
 
 }

@@ -15,7 +15,7 @@ class SimilarRecipeAdapter(var dataset: List<RecipeSimilar>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarRecipeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        return SimilarRecipeViewHolder(inflater.inflate( R.layout.item_recipe_short, parent, false),
+        return SimilarRecipeViewHolder(inflater.inflate( R.layout.item_similar, parent, false),
             listener)
     }
 

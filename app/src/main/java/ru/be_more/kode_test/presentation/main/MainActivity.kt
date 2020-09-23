@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         initNav()
     }
 
+    override fun onBackPressed() {
+        if (!navController.navigateUp())
+            super.onBackPressed()
+    }
+
     private fun initNav() {
         setSupportActionBar(toolbar)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
