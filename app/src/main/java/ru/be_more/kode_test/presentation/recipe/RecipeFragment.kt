@@ -44,6 +44,13 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
         initNav(view)
     }
 
+    override fun onDestroyView() {
+        recyclerView?.adapter = null
+        recyclerView = null
+        adapter = null
+        super.onDestroyView()
+    }
+
     private fun initRecycler() {
         recyclerView = rv_similar_recipes
         recyclerView?.layoutManager = LinearLayoutManager(this.context)

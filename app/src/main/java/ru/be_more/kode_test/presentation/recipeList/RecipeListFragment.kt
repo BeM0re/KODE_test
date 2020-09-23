@@ -78,6 +78,14 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
+    override fun onDestroyView() {
+        recyclerView?.adapter = null
+        recyclerView = null
+        adapter = null
+        searchView = null
+        super.onDestroyView()
+    }
+
     private fun subscribe() {
         viewModel.isLoading.observe(viewLifecycleOwner, { showLoading(it) })
         viewModel.dataset.observe(viewLifecycleOwner, { showData(it) })
