@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="ru.be_more.kode_test.presentation.details.DetailFragment"
+        android:name="ru.be_more.kode_test.presentation.recipe.RecipeFragment"
         android:label="{title}" >
         <argument
             android:name="title"

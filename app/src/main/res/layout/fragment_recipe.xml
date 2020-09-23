@@ -41,8 +41,7 @@
                 android:layout_height="wrap_content">
 
                 <RatingBar
-                    style="@style/GlassRating"
-                    android:id="@+id/rb_recipe_rating"
+                    android:id="@+id/rb_recipe_difficulty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:isIndicator="true"
@@ -95,6 +94,7 @@
                 android:textSize="@dimen/font_large_20" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_similar_recipes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:itemCount="3"

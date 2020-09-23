@@ -7,8 +7,8 @@ data class RemoteRecipe(
     val name: String,
     val images: List<String>,
     val lastUpdated: Int,
-    val description: String,
-    val instructions: String,
+    val description: String?,
+    val instructions: String?,
     val difficulty: Int,
     val similar: List<RemoteRecipeSimilar>
 ){
@@ -19,8 +19,8 @@ data class RemoteRecipe(
             name = name,
             images = images,
             lastUpdated = lastUpdated,
-            description = description,
-            instructions = instructions,
+            description = description?:"",
+            instructions = instructions?:"",
             difficulty = difficulty,
             similar = similar.map { it.toModel() }
         )

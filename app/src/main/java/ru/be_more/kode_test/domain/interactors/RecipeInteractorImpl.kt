@@ -1,5 +1,6 @@
 package ru.be_more.kode_test.domain.interactors
 
+import android.util.Log
 import io.reactivex.Single
 import ru.be_more.kode_test.data.remote.RemoteContract
 import ru.be_more.kode_test.domain.InteractorContract

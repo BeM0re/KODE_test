@@ -41,14 +41,13 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         setHasOptionsMenu(true)
         super.onViewCreated(view, savedInstanceState)
 
-        initRv()
+        initRecycler()
         initNav(view)
         subscribe()
         viewModel.initViewModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        Log.d("M_RecipeListFragment", "search")
         inflater.inflate(R.menu.menu, menu)
 
         val searchItem: MenuItem? = menu.findItem(R.id.action_search)
@@ -95,15 +94,15 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         navController = Navigation.findNavController(view)
     }
 
-    private fun initRv(){
+    private fun initRecycler(){
         recyclerView = rv_recipe_list
         recyclerView?.layoutManager = LinearLayoutManager(this.context)
     }
 
-    override fun onRecipeClickListener(id: String, title: String) {
+    override fun onRecipeClickListener(id: String, name: String) {
         val bundle = Bundle()
         bundle.putString("uuid", id)
-        bundle.putString("title", title)
+        bundle.putString("title", name)
         navController.navigate(R.id.action_recipeListFragment_to_detailsFragment, bundle)
     }
 }

@@ -14,6 +14,7 @@ class RecipeRepositoryImpl(
 
     override fun getRecipe(id: String): Single<Recipe> =
         api.getRecipe(id)
+            .map { it.recipe }
             .map { it.toModel() }
             .processSingle()
 
