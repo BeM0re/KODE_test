@@ -1,6 +1,5 @@
 package ru.be_more.kode_test.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import ru.be_more.kode_test.domain.model.Recipe
 import ru.be_more.kode_test.domain.model.RecipeShort

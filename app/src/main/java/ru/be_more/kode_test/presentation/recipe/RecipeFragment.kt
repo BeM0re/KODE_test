@@ -2,7 +2,6 @@ package ru.be_more.kode_test.presentation.recipe
 
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,20 +11,28 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_recipe.*
 import org.koin.android.ext.android.inject
 import ru.be_more.kode_test.R
 import ru.be_more.kode_test.domain.model.Recipe
 import ru.be_more.kode_test.presentation.ViewModelContract
+import ru.be_more.kode_test.presentation.interfaces.OnPhotoClickListener
 import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
+import ru.be_more.kode_test.presentation.recipe.photo.RecipePhotoAdapter
+import ru.be_more.kode_test.presentation.recipe.similar.SimilarRecipeAdapter
 
-class RecipeFragment: Fragment(), OnRecipeClickListener {
+class RecipeFragment: Fragment(),
+    OnRecipeClickListener,
+    OnPhotoClickListener {
 
     private val viewModel: ViewModelContract.DetailViewModel by inject()
-    private var recyclerView : RecyclerView? = null
-    private var adapter : SimilarRecipeAdapter? = null
+
+    private var similarRecyclerView : RecyclerView? = null
+    private var similarAdapter : SimilarRecipeAdapter? = null
+
+    private var photoRecyclerView : RecyclerView? = null
+    private var photoAdapter : RecipePhotoAdapter? = null
+
     private lateinit var navController: NavController
 
     override fun onCreateView(
@@ -45,15 +52,21 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
     }
 
     override fun onDestroyView() {
-        recyclerView?.adapter = null
-        recyclerView = null
-        adapter = null
+        similarRecyclerView?.adapter = null
+        similarRecyclerView = null
+        similarAdapter = null
+        photoRecyclerView?.adapter = null
+        photoRecyclerView = null
+        photoAdapter = null
         super.onDestroyView()
     }
 
     private fun initRecycler() {
-        recyclerView = rv_similar_recipes
-        recyclerView?.layoutManager = LinearLayoutManager(this.context)
+        similarRecyclerView = rv_similar_recipes
+        similarRecyclerView?.layoutManager = LinearLayoutManager(this.context)
+        photoRecyclerView = rv_recipe_photos
+        photoRecyclerView?.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL,false)
     }
 
     private fun initNav(view: View) {
@@ -74,17 +87,14 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
         tv_recipe_description.text = recipe.description
         tv_recipe_instruction.text = recipe.instructions
 
-        adapter = SimilarRecipeAdapter(recipe.similar, this)
-        recyclerView?.adapter = adapter
-        recyclerView?.addItemDecoration(
-            DividerItemDecoration(recyclerView?.context, ClipDrawable.HORIZONTAL)
+        similarAdapter = SimilarRecipeAdapter(recipe.similar, this)
+        similarRecyclerView?.adapter = similarAdapter
+        similarRecyclerView?.addItemDecoration(
+            DividerItemDecoration(similarRecyclerView?.context, ClipDrawable.HORIZONTAL)
         )
 
-        recipe.images.forEach {url ->
-            Glide.with(iv_recipe_photo)
-                .load(url)
-                .into(iv_recipe_photo)
-        }
+        photoAdapter = RecipePhotoAdapter(recipe.images, this)
+        photoRecyclerView?.adapter = photoAdapter
     }
 
     override fun onRecipeClickListener(id: String, name: String) {
@@ -92,6 +102,13 @@ class RecipeFragment: Fragment(), OnRecipeClickListener {
         bundle.putString("uuid", id)
         bundle.putString("title", name)
         navController.navigate(R.id.action_detailsFragment_self, bundle)
+    }
+
+    override fun onPhotoClickListener(url: String) {
+        val bundle = Bundle()
+        bundle.putString("url", url)
+        bundle.putString("title", viewModel.recipeData.value?.name?:"Recipe photo")
+        navController.navigate(R.id.action_detailsFragment_to_fullscreenFragment, bundle)
     }
 
 }

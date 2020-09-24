@@ -1,4 +1,4 @@
-package ru.be_more.kode_test.presentation.recipe
+package ru.be_more.kode_test.presentation.recipe.similar
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

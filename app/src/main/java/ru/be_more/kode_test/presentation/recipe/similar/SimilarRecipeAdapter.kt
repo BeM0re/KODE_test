@@ -1,10 +1,9 @@
-package ru.be_more.kode_test.presentation.recipe
+package ru.be_more.kode_test.presentation.recipe.similar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.be_more.kode_test.R
-import ru.be_more.kode_test.domain.model.RecipeShort
 import ru.be_more.kode_test.domain.model.RecipeSimilar
 import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
 
