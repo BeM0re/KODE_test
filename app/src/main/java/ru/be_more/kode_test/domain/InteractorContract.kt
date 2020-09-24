@@ -11,4 +11,8 @@ interface InteractorContract {
         fun getRecipes(): Single<List<RecipeShort>>
         fun release()
     }
+
+    interface PhotoInteractor{
+        fun savePhoto(url: String, name: String): Boolean
+    }
 }

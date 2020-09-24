@@ -24,4 +24,9 @@ interface ViewModelContract {
         fun initViewModel(id: String)
         val recipeData: LiveData<Recipe>
     }
+
+    interface FullscreenViewModel{
+        val downloadSuccess: LiveData<Boolean>
+        fun savePhoto(url: String, name: String)
+    }
 }
