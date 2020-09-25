@@ -24,11 +24,7 @@ class RecipeViewModelImpl (
     }
 
     override fun onDestroy() {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveState() {
-        TODO("Not yet implemented")
+        interactor.release()
     }
 
 }

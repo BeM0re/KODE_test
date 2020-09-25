@@ -53,6 +53,7 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
 
         val searchItem: MenuItem? = menu.findItem(R.id.action_search)
         val searchManager = getSystemService(requireContext(), SearchManager::class.java) as SearchManager
+
         searchView = searchItem?.actionView as SearchView
         searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView?.setOnQueryTextListener(SearchListener(
@@ -68,7 +69,6 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
         val reasonDialog = SortDialog{
             viewModel.setSort(it)
         }
-
         val sortItem: MenuItem? = menu.findItem(R.id.action_sort)
         sortItem?.setOnMenuItemClickListener {
             reasonDialog.show(requireActivity().supportFragmentManager, "sort")
@@ -79,6 +79,8 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
     }
 
     override fun onDestroyView() {
+        viewModel.saveState(
+            (recyclerView?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
         recyclerView?.adapter = null
         recyclerView = null
         adapter = null
@@ -89,6 +91,12 @@ class RecipeListFragment: Fragment(), OnRecipeClickListener {
     private fun subscribe() {
         viewModel.isLoading.observe(viewLifecycleOwner, { showLoading(it) })
         viewModel.dataset.observe(viewLifecycleOwner, { showData(it) })
+        viewModel.savedPosition.observe(viewLifecycleOwner, { setPosition(it) })
+    }
+
+    private fun setPosition(pos: Int?) {
+        if (pos != null && pos != 0)
+            (recyclerView?.layoutManager as LinearLayoutManager).scrollToPosition(pos)
     }
 
     private fun showData(data: List<RecipeShort>?) {

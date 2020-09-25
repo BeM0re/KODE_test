@@ -9,20 +9,21 @@ interface ViewModelContract {
 
     interface BaseViewModel{
         fun onDestroy()
-        fun saveState()
     }
 
     interface RecipeListViewModel: BaseViewModel {
-        fun initViewModel()
         val isLoading: LiveData<Boolean>
         val dataset: LiveData<List<RecipeShort>>
+        val savedPosition: LiveData<Int>
+        fun initViewModel()
         fun search(query: String)
         fun setSort(sortType: SortDialog.SortType)
+        fun saveState(position: Int)
     }
 
     interface DetailViewModel: BaseViewModel {
-        fun initViewModel(id: String)
         val recipeData: LiveData<Recipe>
+        fun initViewModel(id: String)
     }
 
     interface FullscreenViewModel{

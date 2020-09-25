@@ -15,22 +15,30 @@ class RecipeListViewModelImpl (
 ): ViewModel(), ViewModelContract.RecipeListViewModel{
 
     override val dataset = MutableLiveData<List<RecipeShort>>()
-    private var fullData: List<RecipeShort>? = null
-
     override val isLoading = MutableLiveData<Boolean>()
+    override var savedPosition = MutableLiveData<Int>()
+
+    private var position = 0
+    private var fullData: List<RecipeShort>? = null
 
     @SuppressLint("CheckResult")
     override fun initViewModel() {
-        isLoading.postValue(true)
-        interactor.getRecipes()
-            .subscribe(
-                {
-                    isLoading.postValue(false)
-                    fullData = it
-                    dataset.postValue(fullData)
-                },
-                { Log.e("M_RecipeListViewModelIm","Get list error = $it") }
-            )
+        if (fullData?.isEmpty() != false) {
+            isLoading.postValue(true)
+            interactor.getRecipes()
+                .subscribe(
+                    {
+                        isLoading.postValue(false)
+                        fullData = it
+                        dataset.postValue(fullData)
+                    },
+                    { Log.e("M_RecipeListViewModelIm","Get list error = $it") }
+                )
+        }
+        else{
+            savedPosition.postValue(position)
+            dataset.postValue(dataset.value)
+        }
 
     }
 
@@ -38,22 +46,19 @@ class RecipeListViewModelImpl (
         interactor.release()
     }
 
-    override fun saveState() {
-        TODO("Not yet implemented")
+    override fun saveState(position: Int) {
+        this.position = position
     }
 
     override fun search(query: String) {
         if(query.isEmpty())
             dataset.postValue(fullData)
-        else{
+        else
             dataset.postValue(
                 fullData?.filter { it.name.contains(query, true) ||
                         it.description.contains(query, true) ||
                         it.instructions.contains(query, true) }
             )
-        }
-
-
     }
 
     override fun setSort(sortType: SortDialog.SortType) {

@@ -53,7 +53,6 @@ class RecipeFragment: Fragment(),
     }
 
     override fun onDestroyView() {
-        Log.d("M_RecipeFragment","on Destroy")
         similarRecyclerView?.adapter = null
         similarRecyclerView = null
         similarAdapter = null
