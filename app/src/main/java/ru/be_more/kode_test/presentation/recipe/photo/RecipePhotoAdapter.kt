@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.be_more.kode_test.R
-import ru.be_more.kode_test.domain.model.RecipeSimilar
 import ru.be_more.kode_test.presentation.interfaces.OnPhotoClickListener
-import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
-import ru.be_more.kode_test.presentation.recipe.similar.SimilarRecipeViewHolder
 
-class RecipePhotoAdapter(var dataset: List<String>,
-                         private val listener: OnPhotoClickListener
+class RecipePhotoAdapter(
+    private var dataset: List<String>,
+    private val listener: OnPhotoClickListener
 ) : RecyclerView.Adapter<RecipePhotoViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipePhotoViewHolder {

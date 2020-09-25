@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.be_more.kode_test.R
@@ -33,7 +34,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNav() {
         setSupportActionBar(toolbar)
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+//        navController.setGraph(R.navigation.main_graph)
 
         NavigationUI.setupActionBarWithNavController(this, navController)
 

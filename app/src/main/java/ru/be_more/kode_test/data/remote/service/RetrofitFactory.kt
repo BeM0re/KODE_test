@@ -1,5 +1,6 @@
 package ru.be_more.kode_test.data.remote.service
 
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
@@ -9,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitFactory {
 
-    var gson = GsonBuilder()
+    private var gson: Gson = GsonBuilder()
         .setLenient()
         .create()
 

@@ -2,25 +2,16 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
-<!--        <item name="backgroundColor">@color/color_background</item>-->
-
-
         <item name="android:windowActivityTransitions">true</item>
-<!--        <item name="android:windowAnimationStyle">@style/ActivityTransitions</item>-->
-
-        <!--Remove splash1 -->
         <item name="android:windowBackground">@android:color/white</item>
-
-<!--        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>-->
     </style>
-
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/launch_screen</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
 </resources>

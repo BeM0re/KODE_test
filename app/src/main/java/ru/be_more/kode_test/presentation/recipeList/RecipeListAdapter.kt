@@ -7,8 +7,9 @@ import ru.be_more.kode_test.R
 import ru.be_more.kode_test.domain.model.RecipeShort
 import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
 
-class RecipeListAdapter(var dataset: List<RecipeShort>,
-                    private val listener: OnRecipeClickListener
+class RecipeListAdapter(
+    private var dataset: List<RecipeShort>,
+    private val listener: OnRecipeClickListener
 ) : RecyclerView.Adapter<RecipeListItemViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeListItemViewHolder {

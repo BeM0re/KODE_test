@@ -8,7 +8,6 @@ import ru.be_more.kode_test.domain.InteractorContract
 import ru.be_more.kode_test.domain.model.RecipeShort
 import ru.be_more.kode_test.presentation.ViewModelContract
 import ru.be_more.kode_test.presentation.recipe.SortDialog
-import java.util.*
 
 class RecipeListViewModelImpl (
     private val interactor : InteractorContract.RecipeInteractor

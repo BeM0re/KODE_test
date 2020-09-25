@@ -7,8 +7,9 @@ import ru.be_more.kode_test.R
 import ru.be_more.kode_test.domain.model.RecipeSimilar
 import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
 
-class SimilarRecipeAdapter(var dataset: List<RecipeSimilar>,
-                           private val listener: OnRecipeClickListener
+class SimilarRecipeAdapter(
+    private var dataset: List<RecipeSimilar>,
+    private val listener: OnRecipeClickListener
 ) : RecyclerView.Adapter<SimilarRecipeViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarRecipeViewHolder {
