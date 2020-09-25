@@ -2,6 +2,7 @@ package ru.be_more.kode_test.presentation.recipe
 
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,7 @@ class RecipeFragment: Fragment(),
     }
 
     override fun onDestroyView() {
+        Log.d("M_RecipeFragment","on Destroy")
         similarRecyclerView?.adapter = null
         similarRecyclerView = null
         similarAdapter = null
@@ -87,11 +89,16 @@ class RecipeFragment: Fragment(),
         tv_recipe_description.text = recipe.description
         tv_recipe_instruction.text = recipe.instructions
 
-        similarAdapter = SimilarRecipeAdapter(recipe.similar, this)
-        similarRecyclerView?.adapter = similarAdapter
-        similarRecyclerView?.addItemDecoration(
-            DividerItemDecoration(similarRecyclerView?.context, ClipDrawable.HORIZONTAL)
-        )
+        if (recipe.similar.isNotEmpty()){
+            tv_recipe_similar_title.visibility = View.VISIBLE
+            similarAdapter = SimilarRecipeAdapter(recipe.similar, this)
+            similarRecyclerView?.adapter = similarAdapter
+            similarRecyclerView?.addItemDecoration(
+                DividerItemDecoration(similarRecyclerView?.context, ClipDrawable.HORIZONTAL)
+            )
+        }
+        else
+            tv_recipe_similar_title.visibility = View.GONE
 
         photoAdapter = RecipePhotoAdapter(recipe.images, this)
         photoRecyclerView?.adapter = photoAdapter

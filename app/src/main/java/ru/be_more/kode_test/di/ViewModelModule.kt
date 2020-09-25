@@ -10,6 +10,6 @@ import ru.be_more.kode_test.presentation.recipeList.RecipeListViewModelImpl
 @JvmField
 val presentationModule = module {
     single<ViewModelContract.RecipeListViewModel> { RecipeListViewModelImpl(get()) }
-    single<ViewModelContract.DetailViewModel> { RecipeViewModelImpl(get()) }
+    factory<ViewModelContract.DetailViewModel> { RecipeViewModelImpl(get()) }
     single<ViewModelContract.FullscreenViewModel> { FullscreenViewModelImpl(get()) }
 }

@@ -19,10 +19,8 @@ open class App : Application() {
             androidContext(this@App)
             androidLogger()
             modules(listOf(
-//                appModule,
                 presentationModule,
                 repositoryModule,
-//                storageModule,
                 interactorModule,
                 networkModule)
             )
