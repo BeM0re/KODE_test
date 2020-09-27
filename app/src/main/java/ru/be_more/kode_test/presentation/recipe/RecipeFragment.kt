@@ -21,7 +21,7 @@ import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
 import ru.be_more.kode_test.presentation.recipe.photo.RecipePhotoAdapter
 import ru.be_more.kode_test.presentation.recipe.similar.SimilarRecipeAdapter
 
-class RecipeFragment: Fragment(),
+class RecipeFragment: Fragment(R.layout.fragment_recipe),
     OnRecipeClickListener,
     OnPhotoClickListener {
 
@@ -34,13 +34,6 @@ class RecipeFragment: Fragment(),
     private var photoAdapter : RecipePhotoAdapter? = null
 
     private lateinit var navController: NavController
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_recipe, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)

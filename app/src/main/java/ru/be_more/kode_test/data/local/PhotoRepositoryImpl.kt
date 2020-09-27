@@ -17,8 +17,8 @@ class PhotoRepositoryImpl(
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name)
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED) // to notify when download is complete
 
-            val manager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager?
-            manager!!.enqueue(request)
+            val manager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+            manager.enqueue(request)
             true
         } catch (ex: Exception ) {
             Log.e("M_PhotoRepositoryImpl","downloading error = $ex")

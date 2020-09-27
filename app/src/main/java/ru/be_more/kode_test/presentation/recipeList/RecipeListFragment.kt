@@ -22,20 +22,13 @@ import ru.be_more.kode_test.presentation.ViewModelContract
 import ru.be_more.kode_test.presentation.interfaces.OnRecipeClickListener
 import ru.be_more.kode_test.presentation.recipe.SortDialog
 
-class RecipeListFragment: Fragment(), OnRecipeClickListener {
+class RecipeListFragment: Fragment(R.layout.fragment_list), OnRecipeClickListener {
 
     private val viewModel: ViewModelContract.RecipeListViewModel by inject()
     private var recyclerView : RecyclerView? = null
     private var adapter : RecipeListAdapter? = null
     private var searchView: SearchView? = null
     private lateinit var navController: NavController
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)

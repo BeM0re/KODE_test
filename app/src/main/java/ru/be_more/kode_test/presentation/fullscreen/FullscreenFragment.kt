@@ -13,16 +13,9 @@ import org.koin.android.ext.android.inject
 import ru.be_more.kode_test.R
 import ru.be_more.kode_test.presentation.ViewModelContract
 
-class FullscreenFragment: Fragment() {
+class FullscreenFragment: Fragment(R.layout.fragment_fullscreen) {
 
     private val viewModel: ViewModelContract.FullscreenViewModel by inject()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? =
-        inflater.inflate(R.layout.fragment_fullscreen, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
